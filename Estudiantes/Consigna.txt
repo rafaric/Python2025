@@ -1,1 +1,4 @@
 Crea un programa en Python que permita registrar las calificaciones de varios estudiantes. El usuario podrá ingresar el nombre de un estudiante y su nota, y el programa almacenará estos datos en un diccionario. Al finalizar, mostrará las notas registradas y el promedio de calificaciones.
+
+
+-.
