@@ -113,3 +113,4 @@ else:
    """
 #calcular_promedio(notas_6toA)
 #calcular_promedio(notas_6toB)
+#practicando 
