@@ -39,24 +39,27 @@ def ingresar_estudiante():
   if nombre in notas_estudiantes:
     messagebox.showwarning("Error", f"El estudiante {nombre} ya tiene una nota registrada")
     return
-  nota_num = int(nota)
+  nota_num =nota
   if nota_num.isdigit():
+    nota_num = int(nota)
     if 0 <= nota_num <= 10:
       notas_estudiantes[nombre] = nota_num
+      lista_estudiantes.insert(tk.END, f"{nombre}: {nota_num}")
       messagebox.showinfo("Éxito", f"Nota registrada para {nombre}")
+      
     else:
       messagebox.showwarning("Error", "La nota debe ser un número entre 0 y 10")
   else:
     messagebox.showwarning("Error", "No ha ingresado un nota válida")
 
-def mostrar_notas(titulo, notas):
-  print(f"\n{titulo}")
-  for nombre, nota in notas.items(): #trae cada uno de los pares de valore del diccionario
-    print(f"{nombre}: {nota}")
+# def mostrar_notas(titulo, notas):
+#   print(f"\n{titulo}")
+#   for nombre, nota in notas.items(): #trae cada uno de los pares de valore del diccionario
+#     print(f"{nombre}: {nota}")
 
 
-def calcular_promedio(notas):
-  if notas:
+def calcular_promedio():
+  if notas_estudiantes:
     promedio = sum(notas_estudiantes.values()) / len(notas_estudiantes)
     messagebox.showinfo("Promedio de Notas", f"El promedio de las notas de los estudiantes es {promedio}")
   else:
@@ -69,7 +72,7 @@ ventana = tk.Tk()
 ventana.title("Gestión de Notas de Estudiantes")
 ventana.geometry("400x400")
 
-tk.Label(ventana, text="Nombre del estudiante:", fg="black", background="white", anchor="w").pack(pady=5, fill="x")
+tk.Label(ventana, text="Nombre del estudiante:").pack(pady=5, fill="x")
 entrada_nombre = tk.Entry(ventana)
 entrada_nombre.pack(pady=5)
 
@@ -85,7 +88,9 @@ tk.Button(ventana, text="Calcular Promedio", command=calcular_promedio).pack(pad
 
 #lista de estudiantes
 tk.Label(ventana, text="Estudiantes Registrados: ").pack(pady=5)
-tk.Listbox(ventana).pack(pady=5, fill=tk.BOTH, expand=True)
+lista_estudiantes = tk.Listbox(ventana)
+lista_estudiantes.pack(pady=5, fill=tk.BOTH, expand=True)
+
 
 
 #Ejecutar la aplicación
@@ -113,3 +118,4 @@ else:
    """
 #calcular_promedio(notas_6toA)
 #calcular_promedio(notas_6toB)
+#practicando 
