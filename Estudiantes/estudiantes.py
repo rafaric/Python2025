@@ -39,23 +39,28 @@ def ingresar_estudiante():
   if nombre in notas_estudiantes:
     messagebox.showwarning("Error", f"El estudiante {nombre} ya tiene una nota registrada")
     return
+
+
+
   nota_num = int(nota)
-  
   if 0 <= nota_num <= 10:
     notas_estudiantes[nombre] = nota_num
+    lista_estudiantes.insert(tk.END, f"{nombre}: {nota_num}")
     messagebox.showinfo("Éxito", f"Nota registrada para {nombre}")
+
   else:
     messagebox.showwarning("Error", "La nota debe ser un número entre 0 y 10")
+
   
 
-def mostrar_notas(titulo, notas):
-  print(f"\n{titulo}")
-  for nombre, nota in notas.items(): #trae cada uno de los pares de valore del diccionario
-    print(f"{nombre}: {nota}")
+# def mostrar_notas(titulo, notas):
+#   print(f"\n{titulo}")
+#   for nombre, nota in notas.items(): #trae cada uno de los pares de valore del diccionario
+#     print(f"{nombre}: {nota}")
 
 
-def calcular_promedio(notas):
-  if notas:
+def calcular_promedio():
+  if notas_estudiantes:
     promedio = sum(notas_estudiantes.values()) / len(notas_estudiantes)
     messagebox.showinfo("Promedio de Notas", f"El promedio de las notas de los estudiantes es {promedio}")
   else:
@@ -67,9 +72,11 @@ ventana = tk.Tk()
 ventana.title("Gestión de Notas de Estudiantes")
 ventana.geometry("400x400")
 
+
 # Frame para el formulario (entradas y botones)
 frame_form = tk.Frame(ventana, bg="yellow")
 frame_form.pack(side="top", fill="x", padx=10, pady=10)
+
 
 tk.Label(frame_form, text="Nombre del estudiante:", bg="lightgray", fg="black", anchor="w").pack(fill="x")
 entrada_nombre = tk.Entry(frame_form, bg="white", fg="black")
@@ -84,9 +91,13 @@ frame_buttons.pack(fill="x", pady=5)
 tk.Button(frame_buttons, text="Agregar Estudiante", command=ingresar_estudiante).pack(side="left", padx=5)
 tk.Button(frame_buttons, text="Calcular Promedio", command=calcular_promedio).pack(side="left", padx=5)
 
-# Frame para la lista de estudiantes
-frame_lista = tk.Frame(ventana)
-frame_lista.pack(fill="both", expand=True, padx=10, pady=10)
+
+#lista de estudiantes
+tk.Label(ventana, text="Estudiantes Registrados: ").pack(pady=5)
+lista_estudiantes = tk.Listbox(ventana)
+lista_estudiantes.pack(pady=5, fill=tk.BOTH, expand=True)
+
+
 
 tk.Label(frame_lista, text="Estudiantes Registrados:", fg="black").pack(pady=5)
 listbox_estudiantes = tk.Listbox(frame_lista)
@@ -115,3 +126,4 @@ else:
    """
 #calcular_promedio(notas_6toA)
 #calcular_promedio(notas_6toB)
+#practicando 
