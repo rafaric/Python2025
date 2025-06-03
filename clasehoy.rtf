@@ -1,0 +1,77 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25280\viewh12360\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs48 \cf0 Crear carpeta de trabajo\
+Instalar maquina virtual:  python -m venv entornoVirtual\
+Activar maquina virtual: python ./entornoVirtual/Scripts/activate\
+Controlar que aparezca el entorno en el prompt.\
+Ir a la carpeta de trabajo si ya no estoy\
+Ejecutar pin Install Django\
+Mostrar pip freeze y pip freeze > requirements.txt\
+Crear nuestro proyecto: django-admin startproject nombreDelProyecto\
+Revisar carpetas\
+Mostrar la diferencia entre el contenedor y la carpeta del proyecto junto al manage.py incluso se puede cambiar el nombre. \
+Ingresar en la carpeta que contiene el proyecto. Mostrar que est\'e1 la carpeta del proyecto y el manage.py. Comentar que manage.py es el punto de acceso para interactuar con Django.\
+Python manage.py runserver\
+Hacer notar que faltan las migraciones\
+urls.py -> admin\
+\
+Aplicaciones en Django -> peque\'f1os m\'f3dulos que agregan funcionalidad a la pagina web\
+Python manage.py startalp nombreDeLaApp\
+Mostrar el contenido de la carpeta creada.\
+\'93Instalar\'94 la aplicaci\'f3n agreg\'e1ndola al settings.py en el sector de INSTALLED_APPS\
+Luego de las apps instaladas por defecto, dejar un espacio y comentar \'93mis apps\'94\
+aAgregar la app \'91nombre de la carpeta generada.apps.nombre de la clase en el archivo apps\
+hAcer migraciones Python manage.py migrate\
+nOtar la falta de problema\
+URLS\
+/ \'93\'94 ruta principal\
+/politicas ruta a la pagina\
+/Autor/1 ruta con par\'e1metro\
+Las URLS devuelven vistas. Por lo que hay que crearlas.\
+VIEWS\
+eN este caso solo se devolver\'e1 un mensaje. \
+From Django.http import httpresponse\
+cRear clase o funci\'f3N\
+dEf index(request):\
+rReturn httpresponse(\'93hola mundo\'94)\
+\
+aAgregar la vista en URLS. (Usar directamente el URLS del proyecto) \
+fRom .Nombrecarpetaapp.views import nombreFuncion\
+pAth \'93\'94, fUnci\'f3n importada\
+mMostrar\
+cRear URLS.py de la aplicaci\'f3n:\
+fRom Django.urls import path\
+Urlpatterns =[\
+path(\'91\'92, nombredelavista) \
+]\
+En el del proyecto se agrega include al import de Path\
+Y En la l\'ednea donde estaba el Path a la vista va include(\'93nombredelaapp.urls\'94)\
+\
+\
+MODELS\
+Class nombredetabla(models.Model):\
+pPar\'e1metros columnas de la tabla = models.lista gracias a vs(verbose_name=\'93\'94 para el administrador) \
+Class meta para mejorar los nombres en la db:\
+   db_table, verbose_name, verbose_name_plural\
+dEf __STR__:\
+ Return self.nombre de la columna \'97> en los casos en que el registro sea necesitado como valor de clave for\'e1neo, se mostrar\'e1 ese campo. \
+eExplicar make migrations y migrations. Se hace cuando se crea, modifica o elimina una tabla/columna\
+\
+Crear super usuario para poder acceder al admin\
+pPython manage.py createsuperuser\
+pAra ver los modelos creados en models.py, debemos registrarlos en el archivo Admin.py\
+ADMIN\
+FRoM. Models Import clases creadas\
+cLass NOMBRE DE LA clase (Admin.modeladmin):\
+fIelds=(listar los campos) \
+lIst_display=()  se puede obviar alguno para que no se muestre en el listado general\
+\
+pAra registrar se hace:\
+Admin.site.register(clase en models, clase en admin) si no definimos una clase para el muestreo, no es necesario el segundo par\'e1metro\
+\
+}

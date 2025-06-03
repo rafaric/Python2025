@@ -40,14 +40,13 @@ def ingresar_estudiante():
     messagebox.showwarning("Error", f"El estudiante {nombre} ya tiene una nota registrada")
     return
   nota_num = int(nota)
-  if nota_num.isdigit():
-    if 0 <= nota_num <= 10:
-      notas_estudiantes[nombre] = nota_num
-      messagebox.showinfo("Éxito", f"Nota registrada para {nombre}")
-    else:
-      messagebox.showwarning("Error", "La nota debe ser un número entre 0 y 10")
+  
+  if 0 <= nota_num <= 10:
+    notas_estudiantes[nombre] = nota_num
+    messagebox.showinfo("Éxito", f"Nota registrada para {nombre}")
   else:
-    messagebox.showwarning("Error", "No ha ingresado un nota válida")
+    messagebox.showwarning("Error", "La nota debe ser un número entre 0 y 10")
+  
 
 def mostrar_notas(titulo, notas):
   print(f"\n{titulo}")
@@ -64,33 +63,36 @@ def calcular_promedio(notas):
 
 
 
-### Creamos la ventana de tkinter
 ventana = tk.Tk()
 ventana.title("Gestión de Notas de Estudiantes")
 ventana.geometry("400x400")
 
-tk.Label(ventana, text="Nombre del estudiante:", fg="black", background="white", anchor="w").pack(pady=5, fill="x")
-entrada_nombre = tk.Entry(ventana)
-entrada_nombre.pack(pady=5)
+# Frame para el formulario (entradas y botones)
+frame_form = tk.Frame(ventana, bg="yellow")
+frame_form.pack(side="top", fill="x", padx=10, pady=10)
 
-tk.Label(ventana, text="Nota:").pack(pady=5)
-entrada_nota = tk.Entry(ventana)
-entrada_nota.pack(pady=5)
+tk.Label(frame_form, text="Nombre del estudiante:", bg="lightgray", fg="black", anchor="w").pack(fill="x")
+entrada_nombre = tk.Entry(frame_form, bg="white", fg="black")
+entrada_nombre.pack(fill="x", pady=5)
 
+tk.Label(frame_form, text="Nota:", bg="lightgray", fg="black", anchor="w").pack(fill="x")
+entrada_nota = tk.Entry(frame_form, bg="white", fg="black")
+entrada_nota.pack(fill="x", pady=5)
 
-##Botones
-tk.Button(ventana, text="Agregar Estudiante", command=ingresar_estudiante).pack(pady=5)
-tk.Button(ventana, text="Calcular Promedio", command=calcular_promedio).pack(pady=5)
+frame_buttons = tk.Frame(frame_form, bg="lightgray")
+frame_buttons.pack(fill="x", pady=5)
+tk.Button(frame_buttons, text="Agregar Estudiante", command=ingresar_estudiante).pack(side="left", padx=5)
+tk.Button(frame_buttons, text="Calcular Promedio", command=calcular_promedio).pack(side="left", padx=5)
 
+# Frame para la lista de estudiantes
+frame_lista = tk.Frame(ventana)
+frame_lista.pack(fill="both", expand=True, padx=10, pady=10)
 
-#lista de estudiantes
-tk.Label(ventana, text="Estudiantes Registrados: ").pack(pady=5)
-tk.Listbox(ventana).pack(pady=5, fill=tk.BOTH, expand=True)
+tk.Label(frame_lista, text="Estudiantes Registrados:", fg="black").pack(pady=5)
+listbox_estudiantes = tk.Listbox(frame_lista)
+listbox_estudiantes.pack(fill="both", expand=True)
 
-
-#Ejecutar la aplicación
 ventana.mainloop()
-
 
 
 
